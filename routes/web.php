@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\DetailProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SigninController;
@@ -28,3 +29,4 @@ Route::get('/signup', [SignupController::class, 'index']);
 
 Route::get('/home', [HomeController::class, 'index']);
 Route::get('/detailproduct', [DetailProductController::class, 'index']);
+Route::get('/cart', [CartController::class, 'index']);

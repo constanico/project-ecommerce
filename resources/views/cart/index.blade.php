@@ -23,9 +23,9 @@
         <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-around py-3">
             <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
                 <li><a href="#" class="nav-link px-2 link-dark fw-bold">MAIBOUTIQUE</a></li>
-                <li><a href="/home" class="nav-link px-2 link-secondary">Home</a></li>
+                <li><a href="#" class="nav-link px-2 link-dark">Home</a></li>
                 <li><a href="#" class="nav-link px-2 link-dark">Search</a></li>
-                <li><a href="/cart" class="nav-link px-2 link-dark">Cart</a></li>
+                <li><a href="#" class="nav-link px-2 link-secondary">Cart</a></li>
                 <li><a href="#" class="nav-link px-2 link-dark">History</a></li>
                 <li><a href="#" class="nav-link px-2 link-dark">Profile</a></li>
             </ul>
@@ -41,29 +41,36 @@
     <section class="py-5 text-center container">
         <div class="row py-lg-5">
             <div class="col-lg-6 col-md-8 mx-auto">
-                <h1 class="fw-light">Find Your Best Clothes Here!</h1>
+                <h1 class="fw-light">My Cart</h1>
             </div>
         </div>
     </section>
 
+    <div class="d-flex flex-row justify-content-end me-5">
+        <div class="p-2">
+            <p class="card-text fs-5 fw-bold">Total Price: </p>
+        </div>
+        <div class="p-2">
+            <button type="button" class="btn btn-md btn-primary">Check Out</button>
+        </div>
+    </div>
+
     <div class="album py-5 bg-light">
         <div class="container">
 
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
                 <div class="col">
-                    <div class="card shadow-sm">
-                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                    <div class="card shadow-sm p-2">
+                        <div class="card shadow-sm" style="height: 250px">
+                            <img src="..." class="img-fluid rounded-start" alt="...">
+                        </div>
 
                         <div class="card-body">
                             <p class="card-text fs-5 fw-bold m-0">Nama Item</p>
-                            <p class="card-text fs-6">Harga Item</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <a href="/detailproduct">
-                                    <button type="button" class="btn btn-sm btn-primary">More Detail</button>
-                                </a>
-                            </div>
-                            </div>
+                            <p class="card-text fs-6 m-0">Harga Item</p>
+                            <p class="card-text fs-6">Qty: </p>
+                            <button type="button" class="btn btn-md btn-primary">Edit Cart</button>
+                            <button type="button" class="btn btn-md btn-danger">Remove from Cart</button>
                         </div>
                     </div>
                 </div>
