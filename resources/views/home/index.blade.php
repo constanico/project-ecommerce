@@ -15,7 +15,7 @@
             font-size: 3.5rem;
           }
         }
-      </style>
+    </style>
 @endsection
 
 @section('content')
@@ -31,7 +31,7 @@
             </ul>
 
             <div class="col-md-3 text-end">
-                <a href="/signin">
+                <a href="{{ route('signout') }}">
                     <button type="button" class="btn btn-outline-primary me-2">Sign Out</button>
                 </a>
             </div>

@@ -41,23 +41,39 @@
 @section('content')
     <body class="text-center">
         <main class="form-signin w-100 m-auto">
-        <form>
+        <form action="{{ route('postsignin') }}" method="POST">
             @csrf
             <h1 class="h3 mb-3 fw-normal">Sign In</h1>
 
             <div class="form-floating">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">Email</label>
+                <input type="email" name="email" class="form-control @error('email') is-invalid
+                @enderror" id="floatingInput" placeholder="name@example.com" required value="{{ old('email') }}">
+                <label for="floatingInput">Email</label>
+                @error('email')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             <div class="form-floating">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-            <label for="floatingPassword">Password</label>
+                <input type="password" name="password" class="form-control @error('password') is-invalid
+                @enderror" id="floatingPassword" placeholder="Password" required>
+                <label for="floatingPassword">Password</label>
+                @error('password')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
 
+            @if (session()->has('error'))
+                <p class="text-danger">{{ session('error') }}</p>
+            @endif
+
             <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" value="remember-me"> Remember me
-            </label>
+                <label>
+                    <input type="checkbox" name="remember" value="remember-me"> Remember me
+                </label>
             </div>
             <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
         </form>

@@ -46,7 +46,7 @@
         border-top-right-radius: 0;
         }
 
-        .form-signup input[name="number"] {
+        .form-signup input[name="phone"] {
         margin-bottom: -1px;
         border-bottom-right-radius: 0;
         border-bottom-left-radius: 0;
@@ -66,29 +66,59 @@
 @section('content')
     <body class="text-center">
         <main class="form-signup w-100 m-auto">
-        <form>
+        <form action="{{ route('postsignup') }}" method="POST">
             @csrf
             <h1 class="h3 mb-3 fw-normal">Sign Up</h1>
 
             <div class="form-floating">
-            <input type="text" name="username" class="form-control" id="username" placeholder="(5-20 letters)">
-            <label for="username">Username</label>
+                <input type="text" name="username" class="form-control @error('username') is-invalid
+                @enderror" id="username" placeholder="(5-20 letters)" required value="{{ old('username') }}">
+                <label for="username">Username</label>
+                @error('username')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             <div class="form-floating">
-            <input type="email" name="email" class="form-control" id="email" placeholder="name@example.com">
-            <label for="email">Email</label>
+                <input type="email" name="email" class="form-control @error('email') is-invalid
+                @enderror" id="email" placeholder="name@example.com" required value="{{ old('email') }}">
+                <label for="email">Email</label>
+                @error('email')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             <div class="form-floating">
-            <input type="password" name="password" class="form-control" id="password" placeholder="(5-20 letters)">
-            <label for="password">Password</label>
+                <input type="password" name="password" class="form-control @error('password') is-invalid
+                @enderror" id="password" placeholder="(5-20 letters)" required>
+                <label for="password">Password</label>
+                @error('password')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             <div class="form-floating">
-            <input type="number" name="number" class="form-control" id="number" placeholder="(10-13 numbers)">
-            <label for="number">Phone Number</label>
+                <input type="number" name="phone" class="form-control @error('phone') is-invalid
+                @enderror" id="number" placeholder="(10-13 numbers)" required value="{{ old('phone') }}">
+                <label for="number">Phone Number</label>
+                @error('phone')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             <div class="form-floating">
-            <input type="text" name="address" class="form-control" id="address" placeholder="(min 5 letters)">
-            <label for="address">Address</label>
+                <input type="text" name="address" class="form-control @error('address') is-invalid
+                @enderror" id="address" placeholder="(min 5 letters)" required value="{{ old('address') }}">
+                <label for="address">Address</label>
+                @error('address')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
 
             <button class="w-100 btn btn-lg btn-primary" type="submit">Submit</button>

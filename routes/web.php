@@ -24,9 +24,15 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/signin', [SigninController::class, 'index']);
-Route::get('/signup', [SignupController::class, 'index']);
+Route::get('/signin', [SigninController::class, 'index'])->name('signin');
+Route::post('/postsignin', [SigninController::class, 'postsignin'])->name('postsignin');
+Route::get('/signout', [SigninController::class, 'signout'])->name('signout');
 
-Route::get('/home', [HomeController::class, 'index']);
-Route::get('/detailproduct', [DetailProductController::class, 'index']);
-Route::get('/cart', [CartController::class, 'index']);
+Route::get('/signup', [SignupController::class, 'index']);
+Route::post('/postsignup', [SignupController::class, 'postsignup'])->name('postsignup');
+
+Route::group(['middleware' => ['auth','checkrole:admin,user']], function(){
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/detailproduct', [DetailProductController::class, 'index']);
+    Route::get('/cart', [CartController::class, 'index']);
+});
