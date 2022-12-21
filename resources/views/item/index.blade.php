@@ -57,30 +57,49 @@
     </div>
 
     <main class="form-add-item w-100 m-auto mt-4">
-        <form action="" method="POST">
+        <form action="{{ route('additem') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <h1 class="h3 mb-3 fw-normal text-center">Add Item</h1>
             <div class="form-group mb-3">
                 <label for="clothesimage">Clothes Image</label>
-                <input type="file" class="form-control-file" id="exampleFormControlFile1">
-              </div>
+                <input name="image" type="file" class="form-control-file @error('image') is-invalid
+                @enderror" id="exampleFormControlFile1">
+                @error('image')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
             <div class="form-group mb-3">
                 <label for="clothesname">Clothes Name</label>
-                <input type="text" class="form-control" id="clothesname" placeholder="(5-20 letters)">
+                <input name="name" type="text" class="form-control @error('name') is-invalid
+                @enderror" id="clothesname" placeholder="(5-20 letters)" required autofocus value ="{{ old('name') }}">
+                @error('name')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
             <div class="form-group mb-3">
                 <label for="clothesdesc">Clothes Desc</label>
-                <input type="text" class="form-control" id="clothesdesc" placeholder="(min 5 letters)">
+                <input name="desc" type="text" class="form-control @error('name') is-invalid
+                @enderror" id="clothesdesc" placeholder="(min 5 letters)" required value ="{{ old('desc') }}">
+                @error('desc')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
             <div class="form-group mb-3">
                 <label for="clothesprice">Clothes Price</label>
-                <input type="number" class="form-control" id="clothesprice" placeholder=">= 1000">
+                <input name="price" type="number" class="form-control @error('name') is-invalid
+                @enderror" id="clothesprice" placeholder=">= 1000" required value ="{{ old('price') }}">
+                @error('price')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
             <div class="form-group mb-3">
                 <label for="clothesstock">Clothes Stock</label>
-                <input type="number" class="form-control" id="clothesstock" placeholder=">= 1">
+                <input name="stock" type="number" class="form-control @error('name') is-invalid
+                @enderror" id="clothesstock" placeholder=">= 1" required value ="{{ old('stock') }}">
+                @error('stock')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
-
             <button class="w-100 btn btn-lg btn-danger" type="submit">Add</button>
         </form>
     </main>

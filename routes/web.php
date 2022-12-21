@@ -33,10 +33,14 @@ Route::get('/signup', [SignupController::class, 'index']);
 Route::post('/postsignup', [SignupController::class, 'postsignup'])->name('postsignup');
 
 Route::group(['middleware' => ['auth','checkrole:admin,user']], function(){
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/home', [HomeController::class, 'index']);
     // Route::get('/home', [HomeController::class, 'viewItem']);
     Route::get('/detailproduct', [DetailProductController::class, 'index']);
     Route::get('/cart', [CartController::class, 'index']);
 });
 
-Route::get('/additem', [ItemController::class, 'index'])->name('additem');
+Route::group(['middleware' => ['auth','checkrole:admin']], function(){
+    Route::get('/additem', [ItemController::class, 'index'])->name('additem');
+    Route::post('/additem', [ItemController::class, 'addItem'])->name('additem');
+});
+

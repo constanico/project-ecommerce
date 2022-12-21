@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -17,17 +18,17 @@ class ItemController extends Controller
 
     public function addItem(Request $request) {
         $rules = [
-            "image" => "required",
-            "name" => "required|unique|min:5|max:20",
-            "desc" => "required|min:5",
-            "price" => "required|min:1000",
-            "stock" => "required|min:1"
+            'name' => 'required|unique:items|min:5|max:20',
+            'image' => 'required|image|mimes:png,jpg,jpeg',
+            'desc' => 'required|min:5',
+            'price' => 'required|min:1000',
+            'stock' => 'required|min:1'
         ];
 
-        $validator = Validator::make($request->all(), $rules);
+        $validate = Validator::make($request->all(), $rules);
 
-        if($validator->fails()) {
-            return back()->withErrors($validator);
+        if($validate->fails()) {
+            return back()->withErrors($validate);
         }
 
         $file = $request->file('image');
@@ -37,9 +38,15 @@ class ItemController extends Controller
         $imageName = 'images/'.$imageName;
 
         DB::table('items')->insert([
-            ['name' => $request->name, 'price' => $request->price, 'desc' => $request->desc, 'stock'=> $request->stock, 'image' => $imageName]
+            [
+                'name' => $request->name,
+                'image' => $imageName,
+                'price' => $request->price,
+                'desc' => $request->desc,
+                'stock'=> $request->stock
+            ]
         ]);
 
-        return redirect()->back();
+        return redirect('/home');
     }
 }

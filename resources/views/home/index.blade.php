@@ -59,18 +59,18 @@
 
     <div class="container">
         <div class="row">
-            {{-- @foreach ($items as $i) --}}
+            @foreach ($item as $i)
             <div class="col-2 d-flex justify-content-center mb-3 mt-2">
                 <div class="card" style="width: 14rem; height: 32rem;">
-                    <img src="" class="card-img-top" alt="..." style="height:18rem; width:auto;">
+                    <img src="{{ Storage::url($i->image) }}" class="card-img-top" alt="..." style="height:18rem; width:auto;">
                     <div class="card-body">
-                        <h5 class="card-title">a</h5>
-                        <p class="card-text">a</p>
+                        <h5 class="card-title">{{ $i->name }}</h5>
+                        <p class="card-text">{{ $i->price }}</p>
                         <a href="" class="btn btn-primary">More Detail</a>
                     </div>
                 </div>
             </div>
-            {{-- @endforeach --}}
+            @endforeach
         </div>
     </div>
 @endsection

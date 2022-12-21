@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -9,7 +10,8 @@ class HomeController extends Controller
 {
     public function index() {
         return view('home.index', [
-            'title' => 'Home'
+            'title' => 'Home',
+            'item' => Item::all()
         ]);
     }
 
