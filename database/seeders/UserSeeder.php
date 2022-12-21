@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class UserSeeder extends Seeder
 {
@@ -15,15 +16,13 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::truncate();
-        User::create([
+        DB::table('users')->insert([
             'username' => 'Admin',
             'email' => 'admin@admin.com',
             'password' => bcrypt('admin'),
             'phone' => '081234567890',
             'address' => 'MaiBoutique Office',
-            'role' => 'admin',
-            'remember_token' => Str::random(60),
+            'role' => 'admin'
         ]);
     }
 }

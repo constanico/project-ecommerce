@@ -34,6 +34,7 @@ Route::post('/postsignup', [SignupController::class, 'postsignup'])->name('posts
 
 Route::group(['middleware' => ['auth','checkrole:admin,user']], function(){
     Route::get('/home', [HomeController::class, 'index'])->name('home');
+    // Route::get('/home', [HomeController::class, 'viewItem']);
     Route::get('/detailproduct', [DetailProductController::class, 'index']);
     Route::get('/cart', [CartController::class, 'index']);
 });
