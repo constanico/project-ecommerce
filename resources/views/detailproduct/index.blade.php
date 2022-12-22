@@ -10,7 +10,7 @@
             <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
                 <li><a href="/home" class="nav-link px-2 link-dark fw-bold">MAIBOUTIQUE</a></li>
                 <li><a href="/home" class="nav-link px-2 link-dark">Home</a></li>
-                <li><a href="#" class="nav-link px-2 link-dark">Search</a></li>
+                <li><a href="/search" class="nav-link px-2 link-dark">Search</a></li>
                 <li><a href="/cart" class="nav-link px-2 link-dark">Cart</a></li>
                 <li><a href="#" class="nav-link px-2 link-dark">History</a></li>
                 <li><a href="#" class="nav-link px-2 link-dark">Profile</a></li>
@@ -27,33 +27,53 @@
     <div class="card my-5 mx-auto" style="max-width: 850px;">
         <div class="row g-0">
           <div class="col-md-4 p-4">
-            <div class="card shadow-sm" style="height: 250px">
-                <img src="..." class="img-fluid rounded-start" alt="...">
+            <div class="card shadow-sm" style="width: auto; height: auto;">
+                <img src="{{ Storage::url($item->image) }}" class="img-fluid rounded-start" alt="..." style="width:15rem; height: 15rem;">
             </div>
           </div>
           <div class="col-md-8 py-4 pe-4">
             <div class="card shadow-sm">
                 <div class="card-body">
-                    <h5 class="card-title fs-2 fw-bold m-0">Nama Item</h5>
-                    <p class="card-text fs-4">Harga Item</p>
+                    <h5 class="card-title fs-2 fw-bold m-0">{{ $item->name }}</h5>
+                    <p class="card-text fs-4">Rp {{ $item->price }}</p>
                     <p class="card-text fw-bold m-0">Product Detail</p>
-                    <p class="card-text">suitable for kids, size: M</p>
+                    <p class="card-text">{{ $item->desc }}</p>
+                    @if (auth()->user()->role=="user")
                     <label for="quantity" class="form-label fw-bold m-0">Quantity :</label>
+                    <form action="{{ url('cart') }}/{{ $item->id }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="container">
+                            <div class="row py-2">
+                                <div class="col p-0 pe-2">
+                                    <input type="number" name="quantity" class="form-control" id="quantity" placeholder="Quantity">
+                                </div>
+                                <div class="col p-0">
+                                    <button type="submit" class="btn btn-md btn-success">Add To Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    @endif
                     <div class="container">
                         <div class="row py-2">
-                            <div class="col p-0 pe-2">
-                                <input type="number" name="quantity" class="form-control" id="quantity" placeholder="Quantity">
+                            <div class="col-2 p-0">
+                                <a href="/home">
+                                    <button type="button" class="btn btn-md btn-danger">Back</button>
+                                </a>
                             </div>
                             <div class="col p-0">
-                                <a href="/cart">
-                                    <button type="button" class="btn btn-md btn-success">Add To Cart</button>
-                                </a>
+                                @if (auth()->user()->role=="admin")
+                                <div class="col p-0">
+                                    <form action="/{{ $item->id }}" method="POST">
+                                        {{ method_field('DELETE') }}
+                                        @csrf
+                                        <button type="button" class="btn btn-md btn-danger">Delete Item</button>
+                                    </form>
+                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>
-                    <a href="/home">
-                        <button type="button" class="btn btn-md btn-danger">Back</button>
-                    </a>
                 </div>
             </div>
           </div>

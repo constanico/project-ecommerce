@@ -23,8 +23,8 @@
         <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-around py-3">
             <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
                 <li><a href="/home" class="nav-link px-2 link-dark fw-bold">MAIBOUTIQUE</a></li>
-                <li><a href="/home" class="nav-link px-2 link-secondary">Home</a></li>
-                <li><a href="/search" class="nav-link px-2 link-dark">Search</a></li>
+                <li><a href="/home" class="nav-link px-2 link-dark">Home</a></li>
+                <li><a href="/search" class="nav-link px-2 link-secondary">Search</a></li>
                 @if (auth()->user()->role=="user")
                 <li><a href="/cart" class="nav-link px-2 link-dark">Cart</a></li>
                 <li><a href="#" class="nav-link px-2 link-dark">History</a></li>
@@ -49,10 +49,21 @@
         </header>
     </div>
 
-    <section class="py-5 text-center container">
+
+    <section class="py-2 text-center container">
         <div class="row py-lg-5">
             <div class="col-lg-6 col-md-8 mx-auto">
-                <h1 class="fw-light">Find Your Best Clothes Here!</h1>
+                <h1 class="fw-light">Search Your Favorite Clothes!</h1>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form action="" method="GET">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Search" aria-label="Recipient's username" name="search" value="{{ request('search') }}">
+                        <button class="btn btn-primary" type="submit">Search</button>
+                    </div>
+                </form>
             </div>
         </div>
     </section>
@@ -76,5 +87,4 @@
             {{ $item->links() }}
         </div>
     </div>
-
 @endsection

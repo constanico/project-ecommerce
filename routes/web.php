@@ -34,9 +34,9 @@ Route::post('/postsignup', [SignupController::class, 'postsignup'])->name('posts
 
 Route::group(['middleware' => ['auth','checkrole:admin,user']], function(){
     Route::get('/home', [HomeController::class, 'index']);
-    // Route::get('/home', [HomeController::class, 'viewItem']);
-    Route::get('/detailproduct', [DetailProductController::class, 'index']);
-    Route::get('/cart', [CartController::class, 'index']);
+    Route::get('/home/{id}', [HomeController::class, 'detailproduct']);
+    Route::post('/cart/{id}', [CartController::class, 'index']);
+    Route::get('/search', [HomeController::class, 'search']);
 });
 
 Route::group(['middleware' => ['auth','checkrole:admin']], function(){

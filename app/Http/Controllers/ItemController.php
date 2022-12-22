@@ -11,24 +11,22 @@ use Illuminate\Support\Facades\Validator;
 class ItemController extends Controller
 {
     public function index() {
-        return view('item.index', [
-            'title' => 'Add Item'
-        ]);
+        return view('item.index');
     }
 
     public function addItem(Request $request) {
         $rules = [
             'name' => 'required|unique:items|min:5|max:20',
-            'image' => 'required|image|mimes:png,jpg,jpeg',
+            'image' => 'required|image|file|mimes:jpg,png,jpeg',
             'desc' => 'required|min:5',
             'price' => 'required|min:1000',
             'stock' => 'required|min:1'
         ];
 
-        $validate = Validator::make($request->all(), $rules);
+        $validator = Validator::make($request->all(), $rules);
 
-        if($validate->fails()) {
-            return back()->withErrors($validate);
+        if($validator->fails()) {
+            return back()->withErrors($validator);
         }
 
         $file = $request->file('image');
@@ -48,5 +46,15 @@ class ItemController extends Controller
         ]);
 
         return redirect('/home');
+    }
+
+    public function deleteFood($id) {
+        $item = DB::table('items')->where('id', $id)->get();
+
+        if(isset($food)) {
+            $item = DB::table('items')->when('id', $id)->delete();
+        }
+
+        return redirect()->back();
     }
 }

@@ -10,15 +10,26 @@ class HomeController extends Controller
 {
     public function index() {
         return view('home.index', [
-            'title' => 'Home',
-            'item' => Item::all()
+            'item' => Item::latest()->paginate(8)
         ]);
     }
 
-    public function viewItem() {
-        $item = DB::table('items')->get();
+    public function search() {
+        $item = Item::latest();
 
-        return view('home.index', compact('item'));
+        if(request('search')) {
+            $item->where('name', 'like', '%' . request('search') . '%');
+        }
+
+        return view('search.index', [
+            'item' => $item->get()
+        ]);
+    }
+
+    public function detailproduct($id) {
+        $item = Item::where('id', $id)->first();
+
+        return view ('detailproduct.index', compact('item'));
     }
 
 }
