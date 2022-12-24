@@ -59,6 +59,7 @@
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <form action="" method="GET">
+                    @csrf
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Search" aria-label="Recipient's username" name="search" value="{{ request('search') }}">
                         <button class="btn btn-primary" type="submit">Search</button>
@@ -83,8 +84,8 @@
             </div>
             @endforeach
         </div>
-        <div class="d-flex justify-content-end">
+        {{-- <div class="d-flex justify-content-end">
             {{ $item->links() }}
-        </div>
+        </div> --}}
     </div>
 @endsection
