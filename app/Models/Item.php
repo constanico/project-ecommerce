@@ -16,4 +16,8 @@ class Item extends Model
         'desc',
         'stock'
     ];
+
+    public function order_detail() {
+        return $this->hasMany('App\OrderDetails','item_id','id');
+    }
 }

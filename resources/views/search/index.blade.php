@@ -72,13 +72,13 @@
     <div class="container">
         <div class="row">
             @foreach ($item as $i)
-            <div class="col-2 d-flex justify-content-center mb-3 mt-2">
-                <div class="card" style="width: auto; height: auto;">
-                    <img src="{{ Storage::url($i->image) }}" class="card-img-top" alt="..." style="height:12rem; width:12rem;">
-                    <div class="card-body">
+            <div class="col-3 d-flex justify-content-center mb-3 mt-2">
+                <div class="card" style="width: 14rem; height: auto;">
+                    <img src="{{ Storage::url($i->image) }}" class="card-img-top mt-3 ms-3 me-3" alt="..." style="height:12rem; width:12rem;">
+                    <div class="card-body d-flex flex-column">
                         <h5 class="card-title">{{ $i->name }}</h5>
                         <p class="card-text">Rp {{ $i->price }}</p>
-                        <a href="{{ url('home') }}/{{ $i->id }}" class="btn btn-primary">More Detail</a>
+                        <a href="{{ url('home') }}/{{ $i->id }}" class="btn btn-primary mt-auto">More Detail</a>
                     </div>
                 </div>
             </div>

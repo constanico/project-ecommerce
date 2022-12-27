@@ -23,11 +23,11 @@ class ItemController extends Controller
             'stock' => 'required|min:1'
         ];
 
-        $validator = Validator::make($request->all(), $rules);
+        // $validator = Validator::make($request->all(), $rules);
 
-        if($validator->fails()) {
-            return back()->withErrors($validator);
-        }
+        // if($validator->fails()) {
+        //     return back()->withErrors($validator);
+        // }
 
         $file = $request->file('image');
 
