@@ -42,7 +42,7 @@
                     <p class="card-text">{{ $item->desc }}</p>
                     @if (auth()->user()->role=="user")
                     <label for="quantity" class="form-label fw-bold m-0">Quantity :</label>
-                    <form action="{{ url('cart') }}/{{ $item->id }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ url('order') }}/{{ $item->id }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="container">
                             <div class="row py-2">
