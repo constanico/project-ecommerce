@@ -10,18 +10,6 @@
     .form-add-item .form-floating:focus-within {
     z-index: 2;
     }
-
-    .form-add-item input[type="email"] {
-    margin-bottom: -1px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-    }
-
-    .form-add-item input[type="password"] {
-    margin-bottom: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    }
 </style>
 @endsection
 

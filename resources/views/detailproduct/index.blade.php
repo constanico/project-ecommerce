@@ -1,9 +1,5 @@
 @extends('master')
 
-@section('css')
-
-@endsection
-
 @section('content')
     <div class="container-fluid bg-light">
         <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-around py-3">
