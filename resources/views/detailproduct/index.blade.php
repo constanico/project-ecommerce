@@ -42,12 +42,12 @@
                     <p class="card-text">{{ $item->desc }}</p>
                     @if (auth()->user()->role=="user")
                     <label for="quantity" class="form-label fw-bold m-0">Quantity :</label>
-                    <form action="{{ url('order') }}/{{ $item->id }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ url('addToCart',$item->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="container">
                             <div class="row py-2">
                                 <div class="col p-0 pe-2">
-                                    <input type="number" name="quantity" class="form-control" id="quantity" placeholder="Quantity">
+                                    <input type="number" name="quantity" value="1" min="1" class="form-control" id="quantity" placeholder="Quantity">
                                 </div>
                                 <div class="col p-0">
                                     <button type="submit" class="btn btn-md btn-success">Add To Cart</button>

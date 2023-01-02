@@ -43,6 +43,7 @@ Route::group(['middleware' => ['auth','checkrole:admin']], function(){
 });
 
 Route::group(['middleware' => ['auth','checkrole:user']], function(){
-    Route::post('order/{id}', [CartController::class, 'order']);
+    Route::get('/cart', [CartController::class, 'index'])->name('cart');
+    Route::post('/addToCart/{id}', [CartController::class, 'addToCart']);
 });
 

@@ -48,7 +48,7 @@ class ItemController extends Controller
         return redirect('/home');
     }
 
-    public function deleteFood($id) {
+    public function deleteItem($id) {
         $item = DB::table('items')->where('id', $id)->get();
 
         if(isset($food)) {
