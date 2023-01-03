@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -15,13 +16,13 @@ class ItemController extends Controller
     }
 
     public function addItem(Request $request) {
-        $rules = [
+        $rules = $request->validate([
             'name' => 'required|unique:items|min:5|max:20',
             'image' => 'required|image|file|mimes:jpg,png,jpeg',
             'desc' => 'required|min:5',
             'price' => 'required|min:1000',
             'stock' => 'required|min:1'
-        ];
+        ]);
 
         // $validator = Validator::make($request->all(), $rules);
 
@@ -49,12 +50,8 @@ class ItemController extends Controller
     }
 
     public function deleteItem($id) {
-        $item = DB::table('items')->where('id', $id)->get();
+        DB::delete('DELETE FROM items WHERE id = ?', [$id]);
 
-        if(isset($food)) {
-            $item = DB::table('items')->when('id', $id)->delete();
-        }
-
-        return redirect()->back();
+        return redirect('/home');
     }
 }

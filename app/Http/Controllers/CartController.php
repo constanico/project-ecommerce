@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\Item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
@@ -31,5 +32,11 @@ class CartController extends Controller
         $cart->save();
 
         return redirect('home');
+    }
+
+    public function deleteCart($id) {
+        DB::delete('DELETE FROM carts WHERE id = ?', [$id]);
+
+        return redirect('/home');
     }
 }

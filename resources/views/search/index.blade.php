@@ -11,7 +11,7 @@
                 <li><a href="/cart" class="nav-link px-2 link-dark">Cart</a></li>
                 <li><a href="#" class="nav-link px-2 link-dark">History</a></li>
                 @endif
-                <li><a href="#" class="nav-link px-2 link-dark">Profile</a></li>
+                <li><a href="/profile" class="nav-link px-2 link-dark">Profile</a></li>
             </ul>
 
             <div class="d-flex justify-content-end col-md-3 text-end">

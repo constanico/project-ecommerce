@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -30,6 +30,15 @@ class HomeController extends Controller
         $item = Item::where('id', $id)->first();
 
         return view ('detailproduct.index', compact('item'));
+    }
+
+    public function profile() {
+        $user = User::find(Auth::user()->id);
+        return view('profile.index', compact('user'));
+    }
+
+    public function editprofile() {
+        return view('profile.editprofile');
     }
 
 }

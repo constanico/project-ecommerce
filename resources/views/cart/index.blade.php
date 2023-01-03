@@ -9,7 +9,7 @@
                 <li><a href="/search" class="nav-link px-2 link-dark">Search</a></li>
                 <li><a href="/cart" class="nav-link px-2 link-secondary">Cart</a></li>
                 <li><a href="#" class="nav-link px-2 link-dark">History</a></li>
-                <li><a href="#" class="nav-link px-2 link-dark">Profile</a></li>
+                <li><a href="/profile" class="nav-link px-2 link-dark">Profile</a></li>
             </ul>
 
             <div class="col-md-3 text-end">
@@ -42,7 +42,7 @@
                             <p class="card-text fs-6 m-0">{{ $cart->price }}</p>
                             <p class="card-text fs-6">Qty: {{ $cart->quantity }}</p>
                             <button type="button" class="btn btn-md btn-primary">Edit Cart</button>
-                            <button type="button" class="btn btn-md btn-danger mt-2">Remove from Cart</button>
+                            <a href="/delete/{{ $cart->id }}" type="button" class="btn btn-md btn-danger mt-2">Remove from Cart</a>
                         </div>
                     </div>
                 </div>

@@ -11,13 +11,22 @@
                 <li><a href="/cart" class="nav-link px-2 link-dark">Cart</a></li>
                 <li><a href="#" class="nav-link px-2 link-dark">History</a></li>
                 @endif
-                <li><a href="#" class="nav-link px-2 link-dark">Profile</a></li>
+                <li><a href="/profile" class="nav-link px-2 link-dark">Profile</a></li>
             </ul>
 
-            <div class="col-md-3 text-end">
-                <a href="/signin">
-                    <button type="button" class="btn btn-outline-primary me-2">Sign Out</button>
-                </a>
+            <div class="d-flex justify-content-end col-md-3 text-end">
+                @if (auth()->user()->role=="admin")
+                <div class="add-item-btn">
+                    <a href="{{ route('additem') }}">
+                        <button type="button" class="btn btn-outline-primary me-2">Add Item</button>
+                    </a>
+                </div>
+                @endif
+                <div class="sign-out-btn">
+                    <a href="{{ route('signout') }}">
+                        <button type="button" class="btn btn-outline-primary">Sign Out</button>
+                    </a>
+                </div>
             </div>
         </header>
     </div>
@@ -60,15 +69,11 @@
                                 </a>
                             </div>
                             <div class="col p-0">
-                                @if (auth()->user()->role=="admin")
                                 <div class="col p-0">
-                                    <form action="/{{ $item->id }}" method="POST">
-                                        {{ method_field('DELETE') }}
-                                        @csrf
-                                        <button type="button" class="btn btn-md btn-danger">Delete Item</button>
-                                    </form>
+                                    @if (auth()->user()->role=="admin")
+                                    <a href="/delete/{{ $item->id }}" type="button" class="btn btn-md btn-danger">Delete Item</a>
+                                    @endif
                                 </div>
-                                @endif
                             </div>
                         </div>
                     </div>
