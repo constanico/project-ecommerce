@@ -11,29 +11,13 @@
         z-index: 2;
         }
 
-        .form-signup input[name="username"] {
+        .form-signup input[name="oldpassword"] {
         margin-bottom: -1px;
         border-bottom-right-radius: 0;
         border-bottom-left-radius: 0;
         }
 
-        .form-signup input[name="email"] {
-        margin-bottom: -1px;
-        border-bottom-right-radius: 0;
-        border-bottom-left-radius: 0;
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-        }
-
-        .form-signup input[name="phone"] {
-        margin-bottom: -1px;
-        border-bottom-right-radius: 0;
-        border-bottom-left-radius: 0;
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-        }
-
-        .form-signup input[name="address"] {
+        .form-signup input[name="newpassword"] {
         margin-bottom: 10px;
         border-top-left-radius: 0;
         border-top-right-radius: 0;
@@ -74,46 +58,26 @@
     </div>
 
     <main class="form-signup w-100 m-auto mt-4">
-        <form action="{{ route('editprofile') }}" method="POST">
+        <form action="{{ route('editpassword') }}" method="POST">
             {{ method_field('PUT') }}
             @csrf
-            <h1 class="h3 mb-3 fw-normal">Update Profile</h1>
+            <h1 class="h3 mb-3 fw-normal">Update Password</h1>
 
             <div class="form-floating">
-                <input type="text" name="username" class="form-control @error('username') is-invalid
-                @enderror" id="username" placeholder="(5-20 letters)" required value="{{ old('username') }}">
-                <label for="username">Username</label>
-                @error('username')
+                <input type="password" name="oldpassword" class="form-control @error('oldpassword') is-invalid
+                @enderror" id="oldpassword" placeholder="(5-20 letters)" required value="{{ old('oldpassword') }}">
+                <label for="oldpassword">Old Password</label>
+                @error('oldpassword')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
                 @enderror
             </div>
             <div class="form-floating">
-                <input type="email" name="email" class="form-control @error('email') is-invalid
-                @enderror" id="email" placeholder="name@example.com" required value="{{ old('email') }}">
-                <label for="email">Email</label>
-                @error('email')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div>
-            <div class="form-floating">
-                <input type="number" name="phone" class="form-control @error('phone') is-invalid
-                @enderror" id="number" placeholder="(10-13 numbers)" required value="{{ old('phone') }}">
-                <label for="number">Phone Number</label>
-                @error('phone')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div>
-            <div class="form-floating">
-                <input type="text" name="address" class="form-control @error('address') is-invalid
-                @enderror" id="address" placeholder="(min 5 letters)" required value="{{ old('address') }}">
-                <label for="address">Address</label>
-                @error('address')
+                <input type="password" name="newpassword" class="form-control @error('newpassword') is-invalid
+                @enderror" id="newpassword" placeholder="(5-20 letters)" required value="{{ old('newpassword') }}">
+                <label for="newpassword">New Password</label>
+                @error('newpassword')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>

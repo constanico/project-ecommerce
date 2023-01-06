@@ -35,8 +35,18 @@ class CartController extends Controller
     }
 
     public function deleteCart($id) {
-        DB::delete('DELETE FROM carts WHERE id = ?', [$id]);
+        $cart = DB::table('carts')->where('id', $id)->get();
+
+        if(isset($cart)) {
+            $cart = DB::table('carts')->where('id', $id)->delete();
+        }
 
         return redirect('/home');
+    }
+
+    public function editCart() {
+        $id = Auth::user()->id;
+        $cart = Cart::where('userId','=',$id)->get();
+        return view('cart.editcart', compact('cart'));
     }
 }

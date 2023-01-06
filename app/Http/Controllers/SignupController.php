@@ -15,7 +15,6 @@ class SignupController extends Controller
 
     public function postsignup(Request $request){
         $data = $request->validate([
-            'title' => 'Sign Up',
             'username' => 'required|min:5|max:20|unique:users',
             'email' => 'required|email:dns|unique:users',
             'password' => 'required|min:5|max:20',

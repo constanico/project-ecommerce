@@ -45,7 +45,9 @@
                     <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Edit Profile</button>
                 </a>
                 @endif
-                <button type="button" class="btn btn-outline-primary btn-lg px-4">Edit Password</button>
+                <a href="{{ route('editpassword') }}">
+                    <button type="button" class="btn btn-outline-primary btn-lg px-4">Edit Password</button>
+                </a>
             </div>
         </div>
     </div>

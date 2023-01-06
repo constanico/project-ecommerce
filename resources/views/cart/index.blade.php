@@ -41,8 +41,14 @@
                             <p class="card-text fs-5 fw-bold m-0">{{ $cart->itemName }}</p>
                             <p class="card-text fs-6 m-0">{{ $cart->price }}</p>
                             <p class="card-text fs-6">Qty: {{ $cart->quantity }}</p>
-                            <button type="button" class="btn btn-md btn-primary">Edit Cart</button>
-                            <a href="/delete/{{ $cart->id }}" type="button" class="btn btn-md btn-danger mt-2">Remove from Cart</a>
+                            <a href="{{ route('editcart') }}">
+                                <button type="button" class="btn btn-md btn-primary">Edit Cart</button>
+                            </a>
+                            <form action="/delete/{{ $cart->id }}" method="POST">
+                                {{ method_field('DELETE') }}
+                                @csrf
+                                <button type="submit" class="btn btn-md btn-danger mt-2">Remove from Cart</button>
+                            </form>
                         </div>
                     </div>
                 </div>

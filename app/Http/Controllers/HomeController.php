@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -37,8 +39,24 @@ class HomeController extends Controller
         return view('profile.index', compact('user'));
     }
 
-    public function editprofile() {
+    public function editProfile() {
         return view('profile.editprofile');
+    }
+
+    public function updateProfile(Request $request) {
+
+        DB::table('users')->where('id', $request->id)->update([
+            'username' => $request->username,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address
+        ]);
+
+        return redirect('/home');
+    }
+
+    public function editPassword() {
+        return view('profile.editpassword');
     }
 
 }

@@ -50,7 +50,11 @@ class ItemController extends Controller
     }
 
     public function deleteItem($id) {
-        DB::delete('DELETE FROM items WHERE id = ?', [$id]);
+        $item = DB::table('items')->where('id', $id)->get();
+
+        if(isset($item)) {
+            $item = DB::table('items')->where('id', $id)->delete();
+        }
 
         return redirect('/home');
     }

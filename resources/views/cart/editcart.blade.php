@@ -35,19 +35,20 @@
         <div class="row g-0">
           <div class="col-md-4 p-4">
             <div class="card shadow-sm" style="width: auto; height: auto;">
-                <img src="{{ Storage::url($item->image) }}" class="img-fluid rounded-start" alt="..." style="width:15rem; height: 15rem;">
+                <img src="{{ Storage::url($cart->image) }}" class="img-fluid rounded-start" alt="..." style="width:15rem; height: 15rem;">
             </div>
           </div>
           <div class="col-md-8 py-4 pe-4">
             <div class="card shadow-sm">
                 <div class="card-body">
-                    <h5 class="card-title fs-2 fw-bold m-0">{{ $item->name }}</h5>
-                    <p class="card-text fs-4">Rp {{ $item->price }}</p>
+                    <h5 class="card-title fs-2 fw-bold m-0">{{ $cart->itemName }}</h5>
+                    <p class="card-text fs-4">Rp {{ $cart->price }}</p>
                     <p class="card-text fw-bold m-0">Product Detail</p>
-                    <p class="card-text">{{ $item->desc }}</p>
+                    {{-- <p class="card-text">{{ $cart->desc }}</p> --}}
                     @if (auth()->user()->role=="user")
                     <label for="quantity" class="form-label fw-bold m-0">Quantity :</label>
-                    <form action="{{ url('addToCart',$item->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ url('editcart',$cart->id) }}" method="POST" enctype="multipart/form-data">
+                        {{ method_field('UPDATE') }}
                         @csrf
                         <div class="container">
                             <div class="row py-2">
@@ -68,17 +69,6 @@
                                     <button type="button" class="btn btn-md btn-danger">Back</button>
                                 </a>
                             </div>
-                            @if (auth()->user()->role=="admin")
-                            <div class="col p-0">
-                                <div class="col p-0">
-                                    <form action="/delete/{{ $item->id }}" method="POST">
-                                        {{ method_field('DELETE') }}
-                                        @csrf
-                                        <button type="submit" class="btn btn-md btn-danger">Delete Item</button>
-                                    </form>
-                                </div>
-                            </div>
-                            @endif
                         </div>
                     </div>
                 </div>

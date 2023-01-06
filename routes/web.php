@@ -36,18 +36,23 @@ Route::group(['middleware' => ['auth','checkrole:admin,user']], function(){
     Route::get('/home/{id}', [HomeController::class, 'detailproduct']);
     Route::get('/search', [HomeController::class, 'search']);
     Route::get('/profile', [HomeController::class, 'profile']);
+    Route::get('/editpassword', [HomeController::class, 'editPassword'])->name('editpassword');
+    Route::put('/editpassword', [HomeController::class, 'updatePassword'])->name('updatepassword');
 });
 
 Route::group(['middleware' => ['auth','checkrole:admin']], function(){
     Route::get('/additem', [ItemController::class, 'index'])->name('additem');
     Route::post('/additem', [ItemController::class, 'addItem'])->name('additem');
-    Route::get('/delete/{id}', [ItemController::class, 'deleteItem']);
+    Route::delete('/delete/{id}', [ItemController::class, 'deleteItem']);
 });
 
 Route::group(['middleware' => ['auth','checkrole:user']], function(){
     Route::get('/cart', [CartController::class, 'index'])->name('cart');
     Route::post('/addToCart/{id}', [CartController::class, 'addToCart']);
-    Route::get('/delete/{id}', [CartController::class, 'deleteCart']);
+    Route::get('/editcart', [CartController::class, 'editCart'])->name('editcart');
+    Route::put('/editcart', [CartController::class, 'updateCart'])->name('updatecart');
+    Route::delete('/delete/{id}', [CartController::class, 'deleteCart']);
     Route::get('/editprofile', [HomeController::class, 'editProfile'])->name('editprofile');
+    Route::put('/editprofile', [HomeController::class, 'updateProfile'])->name('updateprofile');
 });
 
