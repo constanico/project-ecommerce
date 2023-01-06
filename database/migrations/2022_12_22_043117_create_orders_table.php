@@ -17,8 +17,10 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->integer('user_id');
             $table->date('date');
-            $table->string('status');
-            $table->integer('total');
+            $table->string('quantity');
+            $table->string('name');
+            $table->string('price');
+            $table->string('totalPrice');
             $table->timestamps();
         });
     }

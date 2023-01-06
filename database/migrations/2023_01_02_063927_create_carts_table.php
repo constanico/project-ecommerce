@@ -20,8 +20,6 @@ class CreateCartsTable extends Migration
             $table->string('price')->nullable();
             $table->string('quantity')->nullable();
             $table->string('image')->nullable();
-            $table->string('itemPrice')->nullable();
-            $table->string('totalPrice')->nullable();
             $table->string('itemId')->nullable();
             $table->string('userId')->nullable();
             $table->timestamps();

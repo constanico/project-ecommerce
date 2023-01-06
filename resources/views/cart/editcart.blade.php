@@ -43,8 +43,6 @@
                 <div class="card-body">
                     <h5 class="card-title fs-2 fw-bold m-0">{{ $cart->itemName }}</h5>
                     <p class="card-text fs-4">Rp {{ $cart->price }}</p>
-                    <p class="card-text fw-bold m-0">Product Detail</p>
-                    {{-- <p class="card-text">{{ $cart->desc }}</p> --}}
                     @if (auth()->user()->role=="user")
                     <label for="quantity" class="form-label fw-bold m-0">Quantity :</label>
                     <form action="{{ url('editcart',$cart->id) }}" method="POST" enctype="multipart/form-data">
