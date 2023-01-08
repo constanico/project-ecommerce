@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 
 class SigninController extends Controller
 {
@@ -13,10 +14,13 @@ class SigninController extends Controller
 
     public function postsignin(Request $request){
         $data = $request->validate([
-            'title' => 'Sign In',
             'email' => 'required|email:dns',
             'password' => 'required|min:5|max:20',
         ]);
+
+        if($request->remember) {
+            Cookie::queue('logincookie', $request->email, 10);
+        }
 
         if(Auth::attempt($data)){
             $request->session()->regenerate();

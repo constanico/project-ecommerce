@@ -47,7 +47,8 @@
 
             <div class="form-floating">
                 <input type="email" name="email" class="form-control @error('email') is-invalid
-                @enderror" id="floatingInput" placeholder="name@example.com" required value="{{ old('email') }}">
+                @enderror" id="floatingInput" placeholder="name@example.com" value="{{ Cookie::get('logincookie') !== null ? Cookie::get('logincookie') : "" }}"
+                required value="{{ old('email') }}">
                 <label for="floatingInput">Email</label>
                 @error('email')
                     <div class="invalid-feedback">
@@ -72,7 +73,7 @@
 
             <div class="checkbox mb-3">
                 <label>
-                    <input type="checkbox" name="remember" value="remember-me"> Remember me
+                    <input type="checkbox" name="remember" id="remember" checked="{{ Cookie::get('logincookie') !== null }}"> Remember me
                 </label>
             </div>
             <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
