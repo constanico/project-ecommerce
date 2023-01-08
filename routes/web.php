@@ -33,7 +33,7 @@ Route::post('/postsignup', [SignupController::class, 'postsignup'])->name('posts
 
 Route::group(['middleware' => ['auth','checkrole:admin,user']], function(){
     Route::get('/home', [HomeController::class, 'index']);
-    Route::get('/home/{id}', [HomeController::class, 'detailproduct']);
+    Route::get('/home/{id}', [ItemController::class, 'detailproduct']);
     Route::get('/search', [HomeController::class, 'search']);
     Route::get('/profile', [UserController::class, 'profile']);
     Route::get('/editpassword', [UserController::class, 'editPassword'])->name('editpassword');
@@ -49,8 +49,8 @@ Route::group(['middleware' => ['auth','checkrole:admin']], function(){
 Route::group(['middleware' => ['auth','checkrole:user']], function(){
     Route::get('/cart', [CartController::class, 'index'])->name('cart');
     Route::post('/addToCart/{id}', [CartController::class, 'addToCart']);
-    Route::get('/editcart', [CartController::class, 'editCart'])->name('editcart');
-    Route::put('/editcart', [CartController::class, 'updateCart'])->name('updatecart');
+    Route::get('/editcart/{id}', [CartController::class, 'editCart'])->name('editcart');
+    Route::put('/editcart/{id}', [CartController::class, 'updateCart'])->name('updatecart');
     Route::delete('/delete/{id}', [CartController::class, 'deleteCart']);
     Route::get('/editprofile', [UserController::class, 'editProfile'])->name('editprofile');
     Route::put('/editprofile', [UserController::class, 'updateProfile'])->name('updateprofile');

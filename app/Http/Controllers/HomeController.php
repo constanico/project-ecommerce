@@ -30,10 +30,4 @@ class HomeController extends Controller
         ]);
     }
 
-    public function detailproduct($id) {
-        $item = Item::where('id', $id)->first();
-
-        return view ('detailproduct.index', compact('item'));
-    }
-
 }

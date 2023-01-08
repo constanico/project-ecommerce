@@ -71,7 +71,7 @@
                             @if (auth()->user()->role=="admin")
                             <div class="col p-0">
                                 <div class="col p-0">
-                                    <form action="/delete/{{ $item->id }}" method="POST">
+                                    <form action="{{ url('delete',$item->id) }}" method="POST">
                                         {{ method_field('DELETE') }}
                                         @csrf
                                         <button type="submit" class="btn btn-md btn-danger">Delete Item</button>

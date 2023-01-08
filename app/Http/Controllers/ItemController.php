@@ -15,6 +15,12 @@ class ItemController extends Controller
         return view('item.index');
     }
 
+    public function detailproduct($id) {
+        $item = Item::where('id', $id)->first();
+
+        return view ('detailproduct.index', compact('item'));
+    }
+
     public function addItem(Request $request) {
         $request->validate([
             'name' => 'required|unique:items|min:5|max:20',
@@ -44,7 +50,8 @@ class ItemController extends Controller
     }
 
     public function deleteItem($id) {
-        $item = DB::table('items')->where('id', $id)->get();
+        dd($id);
+        $item = DB::table('items')->where('id', $id)->first();;
 
         if(isset($item)) {
             $item = DB::table('items')->where('id', $id)->delete();

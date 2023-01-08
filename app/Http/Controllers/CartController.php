@@ -44,9 +44,21 @@ class CartController extends Controller
         return redirect('/home');
     }
 
-    public function editCart() {
-        $id = Auth::user()->id;
-        $cart = Cart::where('userId','=',$id)->get();
+    public function editCart($id) {
+        $cart = Cart::where('id', $id)->first();
         return view('cart.editcart', compact('cart'));
+    }
+
+    public function updateCart(Request $request, $id) {
+        $cart = Cart::where('id', $id)->first();
+
+        $request->validate([
+            'quantity' => 'min:1'
+        ]);
+
+        $cart->quantity = $request->quantity;
+        $cart->save();
+
+        return redirect('/cart');
     }
 }
