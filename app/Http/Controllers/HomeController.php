@@ -46,8 +46,14 @@ class HomeController extends Controller
     }
 
     public function updateProfile(Request $request) {
+        $request->validate([
+            'username' => 'required|min:5|max:20|unique:users,username',
+            'email' => 'required|email:dns|unique:users,email',
+            'phone' => 'required|min:10|max:13',
+            'address' => 'required|min:5',
+        ]);
 
-        DB::table('users')->where('id', $request->id)->update([
+        auth()->user()->update([
             'username' => $request->username,
             'email' => $request->email,
             'phone' => $request->phone,

@@ -44,8 +44,6 @@ class ItemController extends Controller
     }
 
     public function deleteItem($id) {
-        dd($id);
-
         $item = DB::table('items')->where('id', $id)->get();
 
         if(isset($item)) {
