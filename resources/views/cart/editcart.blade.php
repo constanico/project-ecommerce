@@ -45,7 +45,7 @@
                     <p class="card-text fs-4">Rp {{ $cart->price }}</p>
                     @if (auth()->user()->role=="user")
                     <label for="quantity" class="form-label fw-bold m-0">Quantity :</label>
-                    <form action="{{ url('editcart',$cart->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('editcart',$cart->id) }}" method="POST" enctype="multipart/form-data">
                         {{ method_field('UPDATE') }}
                         @csrf
                         <div class="container">

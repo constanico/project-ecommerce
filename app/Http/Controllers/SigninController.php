@@ -8,9 +8,7 @@ use Illuminate\Support\Facades\Auth;
 class SigninController extends Controller
 {
     public function index() {
-        return view('signin.index', [
-            'title' => 'Sign In'
-        ]);
+        return view('signin.index');
     }
 
     public function postsignin(Request $request){
