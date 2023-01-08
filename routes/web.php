@@ -6,6 +6,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SigninController;
 use App\Http\Controllers\SignupController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,9 +35,9 @@ Route::group(['middleware' => ['auth','checkrole:admin,user']], function(){
     Route::get('/home', [HomeController::class, 'index']);
     Route::get('/home/{id}', [HomeController::class, 'detailproduct']);
     Route::get('/search', [HomeController::class, 'search']);
-    Route::get('/profile', [HomeController::class, 'profile']);
-    Route::get('/editpassword', [HomeController::class, 'editPassword'])->name('editpassword');
-    Route::put('/editpassword', [HomeController::class, 'updatePassword'])->name('updatepassword');
+    Route::get('/profile', [UserController::class, 'profile']);
+    Route::get('/editpassword', [UserController::class, 'editPassword'])->name('editpassword');
+    Route::put('/editpassword', [UserController::class, 'updatePassword'])->name('updatepassword');
     Route::delete('/delete/{id}', [ItemController::class, 'deleteItem']);
 });
 
@@ -51,8 +52,8 @@ Route::group(['middleware' => ['auth','checkrole:user']], function(){
     Route::get('/editcart', [CartController::class, 'editCart'])->name('editcart');
     Route::put('/editcart', [CartController::class, 'updateCart'])->name('updatecart');
     Route::delete('/delete/{id}', [CartController::class, 'deleteCart']);
-    Route::get('/editprofile', [HomeController::class, 'editProfile'])->name('editprofile');
-    Route::put('/editprofile', [HomeController::class, 'updateProfile'])->name('updateprofile');
+    Route::get('/editprofile', [UserController::class, 'editProfile'])->name('editprofile');
+    Route::put('/editprofile', [UserController::class, 'updateProfile'])->name('updateprofile');
     Route::get('/history', [OrderController::class, 'index']);
     Route::post('/checkout', [OrderController::class, 'checkOut'])->name('checkout');
 });
