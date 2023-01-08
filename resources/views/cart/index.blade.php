@@ -7,8 +7,10 @@
                 <li><a href="/home" class="nav-link px-2 link-dark fw-bold">MAIBOUTIQUE</a></li>
                 <li><a href="/home" class="nav-link px-2 link-dark">Home</a></li>
                 <li><a href="/search" class="nav-link px-2 link-dark">Search</a></li>
-                <li><a href="/cart" class="nav-link px-2 link-secondary">Cart</a></li>
-                <li><a href="#" class="nav-link px-2 link-dark">History</a></li>
+                @if (auth()->user()->role=="user")
+                <li><a href="/cart" class="nav-link px-2 link-dark">Cart</a></li>
+                <li><a href="/history" class="nav-link px-2 link-dark">History</a></li>
+                @endif
                 <li><a href="/profile" class="nav-link px-2 link-dark">Profile</a></li>
             </ul>
 
@@ -63,7 +65,9 @@
             <p class="card-text fs-5 fw-bold">Total Price: {{ $totalPrice }}</p>
         </div>
         <div class="p-2">
-            <button type="button" class="btn btn-md btn-primary">Check Out</button>
+            <a href="">
+                <button type="button" class="btn btn-md btn-primary">Check Out</button>
+            </a>
         </div>
     </div>
 @endsection

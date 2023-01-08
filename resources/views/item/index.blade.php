@@ -22,7 +22,7 @@
                 <li><a href="/search" class="nav-link px-2 link-dark">Search</a></li>
                 @if (auth()->user()->role=="user")
                 <li><a href="/cart" class="nav-link px-2 link-dark">Cart</a></li>
-                <li><a href="#" class="nav-link px-2 link-dark">History</a></li>
+                <li><a href="/history" class="nav-link px-2 link-dark">History</a></li>
                 @endif
                 <li><a href="/profile" class="nav-link px-2 link-dark">Profile</a></li>
             </ul>

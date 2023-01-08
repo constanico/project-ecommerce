@@ -19,7 +19,7 @@ class SigninController extends Controller
         ]);
 
         if($request->remember) {
-            Cookie::queue('logincookie', $request->email, 10);
+            Cookie::queue('logincookie', $request->email, 5);
         }
 
         if(Auth::attempt($data)){
