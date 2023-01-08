@@ -46,7 +46,7 @@
                             <a href="/editcart/{{ $cart->id }}">
                                 <button type="button" class="btn btn-md btn-primary">Edit Cart</button>
                             </a>
-                            <form action="/delete/{{ $cart->first() }}" method="POST">
+                            <form action="/delete/{{ $cart->id }}" method="POST">
                                 {{ method_field('DELETE') }}
                                 @csrf
                                 <button type="submit" class="btn btn-md btn-danger mt-2">Remove from Cart</button>
