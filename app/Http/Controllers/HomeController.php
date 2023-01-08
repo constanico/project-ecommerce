@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class HomeController extends Controller
 {
@@ -57,6 +59,25 @@ class HomeController extends Controller
 
     public function editPassword() {
         return view('profile.editpassword');
+    }
+
+    public function updatePassword(Request $request) {
+        $request->validate([
+            'oldpassword' => 'required|min:5|max:20',
+            'newpassword' => 'required|min:5|max:20'
+        ]);
+
+        $user = Auth::user();
+        $oldpassword = $request->input('oldpassword');
+        if (!Hash::check($oldpassword, $user->password)) {
+            return back()->withErrors('Please specify the good current password');
+        }
+        else{
+            $user->fill([
+                    'password' => Hash::make($request->newpassword)
+                ])->save();
+        }
+        return redirect('/home');
     }
 
 }

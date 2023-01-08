@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Cart extends Model
 {
     use HasFactory;
+
+    public function item()
+    {
+        return $this->belongsTo(related: Item::class, foreignKey:'itemId');
+    }
 }

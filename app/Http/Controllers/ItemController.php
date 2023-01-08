@@ -16,19 +16,13 @@ class ItemController extends Controller
     }
 
     public function addItem(Request $request) {
-        // $rules = $request->validate([
-        //     'name' => 'required|unique:items|min:5|max:20',
-        //     'image' => 'required|image|file|mimes:jpg,png,jpeg',
-        //     'desc' => 'required|min:5',
-        //     'price' => 'required|min:1000',
-        //     'stock' => 'required|min:1'
-        // ]);
-
-        // $validator = Validator::make($request->all(), $rules);
-
-        // if($validator->fails()) {
-        //     return back()->withErrors($validator);
-        // }
+        $request->validate([
+            'name' => 'required|unique:items|min:5|max:20',
+            'image' => 'required|image|mimes:jpg,png,jpeg',
+            'desc' => 'required|min:5',
+            'price' => 'required|numeric|min:1000',
+            'stock' => 'required|numeric|min:1'
+        ]);
 
         $file = $request->file('image');
 
@@ -50,6 +44,8 @@ class ItemController extends Controller
     }
 
     public function deleteItem($id) {
+        dd($id);
+
         $item = DB::table('items')->where('id', $id)->get();
 
         if(isset($item)) {

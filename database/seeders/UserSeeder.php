@@ -24,5 +24,14 @@ class UserSeeder extends Seeder
             'address' => 'MaiBoutique Office',
             'role' => 'admin'
         ]);
+
+        DB::table('users')->insert([
+            'username' => 'Constanico',
+            'email' => 'constanico@gmail.com',
+            'password' => bcrypt('constanico'),
+            'phone' => '08987654321',
+            'address' => 'Indonesia',
+            'role' => 'user'
+        ]);
     }
 }

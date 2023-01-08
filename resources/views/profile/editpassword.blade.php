@@ -65,17 +65,17 @@
 
             <div class="form-floating">
                 <input type="password" name="oldpassword" class="form-control @error('oldpassword') is-invalid
-                @enderror" id="oldpassword" placeholder="(5-20 letters)" required value="{{ old('oldpassword') }}">
+                @enderror" id="oldpassword" id="oldpassword" placeholder="(5-20 letters)">
                 <label for="oldpassword">Old Password</label>
                 @error('oldpassword')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
                 @enderror
             </div>
             <div class="form-floating">
                 <input type="password" name="newpassword" class="form-control @error('newpassword') is-invalid
-                @enderror" id="newpassword" placeholder="(5-20 letters)" required value="{{ old('newpassword') }}">
+                @enderror" id="newpassword" placeholder="(5-20 letters)">
                 <label for="newpassword">New Password</label>
                 @error('newpassword')
                     <div class="invalid-feedback">

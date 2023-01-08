@@ -17,11 +17,11 @@ class CreateCartsTable extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('itemName')->nullable();
-            $table->string('price')->nullable();
-            $table->string('quantity')->nullable();
+            $table->integer('price')->nullable();
+            $table->integer('quantity')->nullable();
             $table->string('image')->nullable();
-            $table->string('itemId')->nullable();
-            $table->string('userId')->nullable();
+            $table->integer('itemId')->nullable();
+            $table->integer('userId')->nullable();
             $table->timestamps();
         });
     }

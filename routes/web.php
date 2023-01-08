@@ -20,9 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome', [
-        "title" => "Welcome"
-    ]);
+    return view('welcome');
 });
 
 Route::get('/signin', [SigninController::class, 'index'])->name('signin');
@@ -39,12 +37,12 @@ Route::group(['middleware' => ['auth','checkrole:admin,user']], function(){
     Route::get('/profile', [HomeController::class, 'profile']);
     Route::get('/editpassword', [HomeController::class, 'editPassword'])->name('editpassword');
     Route::put('/editpassword', [HomeController::class, 'updatePassword'])->name('updatepassword');
+    Route::delete('/delete/{id}', [ItemController::class, 'deleteItem']);
 });
 
 Route::group(['middleware' => ['auth','checkrole:admin']], function(){
     Route::get('/additem', [ItemController::class, 'index'])->name('additem');
     Route::post('/additem', [ItemController::class, 'addItem'])->name('additem');
-    Route::delete('/delete/{id}', [ItemController::class, 'deleteItem']);
 });
 
 Route::group(['middleware' => ['auth','checkrole:user']], function(){
@@ -56,5 +54,6 @@ Route::group(['middleware' => ['auth','checkrole:user']], function(){
     Route::get('/editprofile', [HomeController::class, 'editProfile'])->name('editprofile');
     Route::put('/editprofile', [HomeController::class, 'updateProfile'])->name('updateprofile');
     Route::get('/history', [OrderController::class, 'index']);
+    Route::post('/checkout', [OrderController::class, 'checkOut'])->name('checkout');
 });
 
