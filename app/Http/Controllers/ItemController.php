@@ -50,7 +50,7 @@ class ItemController extends Controller
     }
 
     public function deleteItem($name) {
-        $item = DB::table('items')->where('name', $name)->first();;
+        $item = DB::table('items')->where('name', $name)->first();
 
         if(isset($item)) {
             $item = DB::table('items')->where('name', $name)->delete();

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Item;
+use COM;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -35,7 +36,7 @@ class CartController extends Controller
     }
 
     public function deleteCart($id) {
-        $cart = DB::table('carts')->where('id', $id)->get();
+        $cart = DB::table('carts')->where('id', $id)->first();
 
         if(isset($cart)) {
             $cart = DB::table('carts')->where('id', $id)->delete();

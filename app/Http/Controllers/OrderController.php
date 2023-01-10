@@ -12,9 +12,6 @@ class OrderController extends Controller
 {
     public function index() {
         $orders = Order::get();
-        // $orders = Order::selectRaw('id, totalPrice, DATE(created_at) as created_date')
-        //     ->orderBy('created_date', 'desc')
-        //     ->get()->groupBy('created_date');
         $detail = OrderDetail::get();
 
         return view('order.index', compact('orders'), compact('detail'));
@@ -25,7 +22,7 @@ class OrderController extends Controller
         $items = Item::select('id', 'stock')->
         whereIn('id', $cart->pluck('itemId'))->pluck('stock', 'id');
         foreach ($cart as $cartProduct) {
-            if (!isset($products[$cartProduct->itemId]) || $items[$cartProduct->itemId] < $cartProduct->quantity) {
+            if (!isset($items[$cartProduct->itemId]) || $items[$cartProduct->itemId] < $cartProduct->quantity) {
                 return redirect('/cart');
             }
         }
@@ -54,5 +51,6 @@ class OrderController extends Controller
 
             return redirect('/history');
         });
+        return redirect('/history');
     }
 }

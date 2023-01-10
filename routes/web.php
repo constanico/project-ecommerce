@@ -51,7 +51,7 @@ Route::group(['middleware' => ['auth','checkrole:user']], function(){
     Route::post('/addToCart/{id}', [CartController::class, 'addToCart']);
     Route::get('/editcart/{id}', [CartController::class, 'editCart'])->name('editcart');
     Route::put('/editcart/{id}', [CartController::class, 'updateCart'])->name('updatecart');
-    Route::delete('/delete/{id}', [CartController::class, 'deleteCart']);
+    Route::get('/delete/{id}', [CartController::class, 'deleteCart']);
     Route::get('/editprofile', [UserController::class, 'editProfile'])->name('editprofile');
     Route::put('/editprofile', [UserController::class, 'updateProfile'])->name('updateprofile');
     Route::get('/history', [OrderController::class, 'index']);

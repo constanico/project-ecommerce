@@ -24,7 +24,7 @@ class SigninController extends Controller
 
         if(Auth::attempt($data)){
             $request->session()->regenerate();
-            return redirect()->intended('home');
+            return redirect()->intended('/home');
         }
         return back()->with('error', 'Email atau Password salah');
     }
