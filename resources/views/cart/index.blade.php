@@ -14,10 +14,19 @@
                 <li><a href="/profile" class="nav-link px-2 link-dark">Profile</a></li>
             </ul>
 
-            <div class="col-md-3 text-end">
-                <a href="/signin">
-                    <button type="button" class="btn btn-outline-primary me-2">Sign Out</button>
-                </a>
+            <div class="d-flex justify-content-end col-md-3 text-end">
+                @if (auth()->user()->role=="admin")
+                <div class="add-item-btn">
+                    <a href="/additem">
+                        <button type="button" class="btn btn-outline-primary me-2">Add Item</button>
+                    </a>
+                </div>
+                @endif
+                <div class="sign-out-btn">
+                    <a href="/signout">
+                        <button type="button" class="btn btn-outline-primary">Sign Out</button>
+                    </a>
+                </div>
             </div>
         </header>
     </div>

@@ -17,13 +17,13 @@
             <div class="d-flex justify-content-end col-md-3 text-end">
                 @if (auth()->user()->role=="admin")
                 <div class="add-item-btn">
-                    <a href="{{ route('additem') }}">
+                    <a href="/additem">
                         <button type="button" class="btn btn-outline-primary me-2">Add Item</button>
                     </a>
                 </div>
                 @endif
                 <div class="sign-out-btn">
-                    <a href="{{ route('signout') }}">
+                    <a href="/signout">
                         <button type="button" class="btn btn-outline-primary">Sign Out</button>
                     </a>
                 </div>
@@ -45,7 +45,7 @@
                     <p class="card-text fs-4">Rp {{ $cart->price }}</p>
                     @if (auth()->user()->role=="user")
                     <label for="quantity" class="form-label fw-bold m-0">Quantity :</label>
-                    <form action="{{ route('editcart',$cart->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="/editcart/{{ $cart->id }}" method="POST" enctype="multipart/form-data">
                         {{ method_field('PUT') }}
                         @csrf
                         <div class="container">

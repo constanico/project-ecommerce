@@ -17,13 +17,13 @@
             <div class="d-flex justify-content-end col-md-3 text-end">
                 @if (auth()->user()->role=="admin")
                 <div class="add-item-btn">
-                    <a href="{{ route('additem') }}">
+                    <a href="/additem">
                         <button type="button" class="btn btn-outline-primary me-2">Add Item</button>
                     </a>
                 </div>
                 @endif
                 <div class="sign-out-btn">
-                    <a href="{{ route('signout') }}">
+                    <a href="/signout">
                         <button type="button" class="btn btn-outline-primary">Sign Out</button>
                     </a>
                 </div>

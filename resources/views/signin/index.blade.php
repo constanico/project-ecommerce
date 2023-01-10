@@ -41,7 +41,7 @@
 @section('content')
     <body class="text-center">
         <main class="form-signin w-100 m-auto">
-        <form action="{{ route('postsignin') }}" method="POST">
+        <form action="/postsignin" method="POST">
             @csrf
             <h1 class="h3 mb-3 fw-normal">Sign In</h1>
 

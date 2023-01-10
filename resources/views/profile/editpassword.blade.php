@@ -43,13 +43,13 @@
             <div class="d-flex justify-content-end col-md-3 text-end">
                 @if (auth()->user()->role=="admin")
                 <div class="add-item-btn">
-                    <a href="{{ route('additem') }}">
+                    <a href="/additem">
                         <button type="button" class="btn btn-outline-primary me-2">Add Item</button>
                     </a>
                 </div>
                 @endif
                 <div class="sign-out-btn">
-                    <a href="{{ route('signout') }}">
+                    <a href="/signout">
                         <button type="button" class="btn btn-outline-primary">Sign Out</button>
                     </a>
                 </div>
@@ -58,7 +58,7 @@
     </div>
 
     <main class="form-signup w-100 m-auto mt-4">
-        <form action="{{ route('editpassword') }}" method="POST">
+        <form action="/editpassword" method="POST">
             {{ method_field('PUT') }}
             @csrf
             <h1 class="h3 mb-3 fw-normal">Update Password</h1>

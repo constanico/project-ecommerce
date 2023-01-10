@@ -66,7 +66,7 @@
 @section('content')
     <body class="text-center">
         <main class="form-signup w-100 m-auto">
-        <form action="{{ route('postsignup') }}" method="POST">
+        <form action="/postsignup" method="POST">
             @csrf
             <h1 class="h3 mb-3 fw-normal">Sign Up</h1>
 

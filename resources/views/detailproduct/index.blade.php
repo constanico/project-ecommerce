@@ -47,7 +47,7 @@
                     <p class="card-text">{{ $item->desc }}</p>
                     @if (auth()->user()->role=="user")
                     <label for="quantity" class="form-label fw-bold m-0">Quantity :</label>
-                    <form action="{{ url('addToCart',$item->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="/addToCart/{{ $item->id }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="container">
                             <div class="row py-2">
@@ -71,7 +71,7 @@
                             @if (auth()->user()->role=="admin")
                             <div class="col p-0">
                                 <div class="col p-0">
-                                    <form action="{{ url('delete',$item->id) }}" method="POST">
+                                    <form action="/delete/{{ $item->name }}" method="POST">
                                         {{ method_field('DELETE') }}
                                         @csrf
                                         <button type="submit" class="btn btn-md btn-danger">Delete Item</button>
