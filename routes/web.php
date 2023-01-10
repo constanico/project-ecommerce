@@ -38,7 +38,7 @@ Route::group(['middleware' => ['auth','checkrole:admin,user']], function(){
     Route::get('/profile', [UserController::class, 'profile']);
     Route::get('/editpassword', [UserController::class, 'editPassword'])->name('editpassword');
     Route::put('/editpassword', [UserController::class, 'updatePassword'])->name('updatepassword');
-    Route::delete('/delete/{id}', [ItemController::class, 'deleteItem']);
+    Route::delete('/delete/{name}', [ItemController::class, 'deleteItem']);
 });
 
 Route::group(['middleware' => ['auth','checkrole:admin']], function(){

@@ -49,13 +49,12 @@ class ItemController extends Controller
         return redirect('/home');
     }
 
-    public function deleteItem(Item $item) {
-        dd($item);
-        // $item = DB::table('items')->where('id', $id)->first();;
+    public function deleteItem($name) {
+        $item = DB::table('items')->where('name', $name)->first();;
 
-        // if(isset($item)) {
-        //     $item = DB::table('items')->where('id', $id)->delete();
-        // }
+        if(isset($item)) {
+            $item = DB::table('items')->where('name', $name)->delete();
+        }
 
         return redirect('/home');
     }
