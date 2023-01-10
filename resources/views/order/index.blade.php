@@ -39,7 +39,7 @@
         </div>
     </section>
 
-    <main class="container">
+    <main class="container border border-secondary rounded">
         <div class="bg-light p-5 rounded">
           <p class="mb-2">2022-05-31</p>
           <p class="mb-2">• 1pc(s) Blue T-Shirt</p>

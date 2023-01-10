@@ -41,7 +41,7 @@
                         <img src="{{ Storage::url($cart->image) }}" class="card-img-top mt-3 ms-3 me-3" alt="..." style="height:12rem; width:12rem;">
                         <div class="card-body">
                             <p class="card-text fs-5 fw-bold m-0">{{ $cart->itemName }}</p>
-                            <p class="card-text fs-6 m-0">{{ $cart->price }}</p>
+                            <p class="card-text fs-6 m-0">Rp {{ $cart->price }}</p>
                             <p class="card-text fs-6">Quantity: {{ $cart->quantity }}</p>
                             <a href="/editcart/{{ $cart->id }}">
                                 <button type="button" class="btn btn-md btn-primary">Edit Cart</button>
@@ -62,7 +62,7 @@
 
     <div class="d-flex flex-row justify-content-end me-5 mb-5">
         <div class="p-2">
-            <p class="card-text fs-5 fw-bold">Total Price: {{ $totalPrice }}</p>
+            <p class="card-text fs-5 fw-bold">Total Price: Rp {{ $totalPrice }}</p>
         </div>
         <div class="p-2">
             <form action="{{ route('checkout') }}" method="POST">
