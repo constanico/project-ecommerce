@@ -74,7 +74,7 @@
             <p class="card-text fs-5 fw-bold">Total Price: Rp {{ $totalPrice }}</p>
         </div>
         <div class="p-2">
-            <form action="{{ route('checkout') }}" method="POST">
+            <form action="/checkout" method="POST">
                 @csrf
                 <button type="submit" class="btn btn-md btn-primary">Check Out</button>
             </form>

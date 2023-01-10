@@ -9,7 +9,7 @@ class OrderDetail extends Model
 {
     use HasFactory;
 
-    public $table = "order";
+    public $table = "order_details";
 
     protected $guarded = [
         'id'

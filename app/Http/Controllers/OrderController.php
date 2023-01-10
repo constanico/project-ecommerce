@@ -5,21 +5,27 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Item;
 use App\Models\Order;
-use Illuminate\Http\Request;
+use App\Models\OrderDetail;
 use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
     public function index() {
-        return view('order.index');
+        $orders = Order::get();
+        // $orders = Order::selectRaw('id, totalPrice, DATE(created_at) as created_date')
+        //     ->orderBy('created_date', 'desc')
+        //     ->get()->groupBy('created_date');
+        $detail = OrderDetail::get();
+
+        return view('order.index', compact('orders'), compact('detail'));
     }
 
     public function checkOut() {
         $cart = Cart::with(relations:'item')->where('userId', auth()->id())->get();
         $items = Item::select('id', 'stock')->
         whereIn('id', $cart->pluck('itemId'))->pluck('stock', 'id');
-        foreach ($cart as $cartItem) {
-            if (!isset($items[$cartItem->itemId]) || $items[$cartItem->itemId] < $cartItem->quantity) {
+        foreach ($cart as $cartProduct) {
+            if (!isset($products[$cartProduct->itemId]) || $items[$cartProduct->itemId] < $cartProduct->quantity) {
                 return redirect('/cart');
             }
         }
@@ -31,10 +37,12 @@ class OrderController extends Controller
             ]);
 
             foreach ($cart as $cartItem) {
-                $order->items()->attach($cartItem->itemId, [
-                    'quantity' => $cartItem->quantity,
+                OrderDetail::create([
+                    'itemId' => $cartItem->itemId,
                     'name' => $cartItem->itemName,
-                    'price' => $cartItem->price
+                    'orderId' => $order->id,
+                    'quantity' => $cartItem->quantity,
+                    'price' => $cartItem->item->price
                 ]);
 
                 $order->increment('totalPrice', $cartItem->quantity * $cartItem->item->price);
@@ -44,7 +52,7 @@ class OrderController extends Controller
 
             Cart::where('userId', auth()->id())->delete();
 
-            return redirect('/home');
+            return redirect('/history');
         });
     }
 }

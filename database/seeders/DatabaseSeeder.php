@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Item;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,6 +15,24 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('users')->insert([
+            'username' => 'Admin',
+            'email' => 'admin@admin.com',
+            'password' => bcrypt('admin'),
+            'phone' => '081234567890',
+            'address' => 'MaiBoutique Office',
+            'role' => 'admin'
+        ]);
+
+        DB::table('users')->insert([
+            'username' => 'Constanico',
+            'email' => 'constanico@gmail.com',
+            'password' => bcrypt('constanico'),
+            'phone' => '08987654321',
+            'address' => 'Indonesia',
+            'role' => 'user'
+        ]);
+
         Item::create([
             'name' => 'Blue T-Shirt',
             'image' => 'blue-t-shirt.jpg',
