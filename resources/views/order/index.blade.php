@@ -39,23 +39,25 @@
         </div>
     </section>
 
-    @foreach ($orders as $orders)
+    @foreach ($orders as $order)
     <main class="container mb-4">
         <div class="bg-secondary text-white p-5 rounded">
-            <p class="mb-2 fs-4 fw-semibold">{{ ($orders->created_at)->format('Y M d') }}</p>
-            @foreach ($detail as $detail)
-            <div class="container">
-                <div class="row align-items-start">
-                    <div class="col-3">
-                        <p class="mb-2">• {{ $detail->quantity }} pc(s) {{ $detail->name }}</p>
-                    </div>
-                    <div class="col">
-                        <p>Rp {{ $detail->price }}</p>
+            <p class="mb-2 fs-4 fw-semibold">{{ ($order->created_at)->format('Y M d') }}</p>
+            @foreach($detail as $d)
+                @if ($order->id == $d->orderId)
+                <div class="container">
+                    <div class="row align-items-start">
+                        <div class="col-3">
+                            <p class="mb-2">• {{ $d->quantity }} pc(s) {{ $d->name }}</p>
+                        </div>
+                        <div class="col">
+                            <p>Rp {{ $d->price }}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
+                @endif
             @endforeach
-            <p class="m-0 fs-4 fw-semibold">Total Price Rp {{ $orders->totalPrice }}</p>
+            <p class="m-0 fs-4 fw-semibold">Total Price Rp {{ $order->totalPrice }}</p>
         </div>
     </main>
     @endforeach
