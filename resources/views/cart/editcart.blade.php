@@ -54,7 +54,7 @@
                                     <input type="number" name="quantity" value="1" min="1" class="form-control" id="quantity" placeholder="Quantity">
                                 </div>
                                 <div class="col p-0">
-                                    <button type="submit" class="btn btn-md btn-success">Add To Cart</button>
+                                    <button type="submit" class="btn btn-md btn-success">Update Cart</button>
                                 </div>
                             </div>
                         </div>
